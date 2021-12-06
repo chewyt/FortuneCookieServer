@@ -60,7 +60,7 @@
             <configuration>
 	            <archive>
 		            <manifest>
-			            <mainClass>chewyt.Main</mainClass>
+			            <!--    Removed, due to making non-executable jar files <mainClass>chewyt.Main</mainClass> -->
 		            </manifest>
 	            </archive>
             </configuration> 
