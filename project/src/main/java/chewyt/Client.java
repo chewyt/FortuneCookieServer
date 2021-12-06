@@ -32,6 +32,9 @@ public class Client {
                 System.out.print(">");
                 command = keyboard.readLine();
                 output.println(command);
+                if(command.equals("get-cookie")){
+                    System.out.println(br.readLine().substring(12));
+                }
             }
         } catch (IOException e) {
             e.getStackTrace();

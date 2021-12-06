@@ -31,6 +31,7 @@ public class Server
                 command = in.readLine();
                 if(command.equals("get-cookie")){
                     String cookieText  = cookie.send(args[1]);
+                    System.out.println("Sending to client: "+cookieText);
                     out.println(cookieText);
                 }
                 else{
