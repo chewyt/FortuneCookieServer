@@ -13,6 +13,9 @@ public class Cookie {
         filename = "Cookies.txt";
 
         File file = new File(filename);
+        if(!file.exists()){
+            file.createNewFile();
+        }
         System.out.println("File .exists: "+file.exists());
         
         
