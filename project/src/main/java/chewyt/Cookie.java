@@ -10,7 +10,7 @@ public class Cookie {
 
     public String send(String filename) throws IOException, FileNotFoundException{
 
-        filename = "Cookies.txt";
+        //filename = "Cookies.txt"; Forced assingment to skip sys arg input
 
         File file = new File(filename);
         if(!file.exists()){
@@ -19,7 +19,7 @@ public class Cookie {
         System.out.println("File .exists: "+file.exists());
         
         
-        try (FileReader fr = new FileReader("Cookies.txt")) {
+        try (FileReader fr = new FileReader(file)) {
             BufferedReader reader = new BufferedReader(fr);
             
             String line=null;
