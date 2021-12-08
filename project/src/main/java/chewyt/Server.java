@@ -7,25 +7,33 @@ public class Server
 {
     public static void main( String[] args ) throws NumberFormatException, IOException
     {
+
         ServerSocket server  = new ServerSocket(Integer.parseInt(args[0]));
         System.out.println("[SERVER] Server is waiting for client connection...");
 
-        Socket client  = server.accept();
-        System.out.println("[SERVER] Connected to client!");
+        while(!server.isClosed()){
+            Socket client  = server.accept();
+            System.out.println("[SERVER] Connected to client!");
+            CookieClientHandler clienthandler = new CookieClientHandler(client,args[1]);
+            Thread thread = new Thread(clienthandler);
+            thread.start();
+        }
+        /* Socket client  = server.accept();
+        System.out.println("[SERVER] Connected to client!"); */
         
         //Printwriter to export data to socket terminal --> client
-        PrintWriter out = new PrintWriter(client.getOutputStream(), true); //true for auto flushing
+        //PrintWriter out = new PrintWriter(client.getOutputStream(), true); //true for auto flushing
 
         //Buffered Reader to read data from Client socket for the commands
-        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        //BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
         // !! Buffered Reader to read cookie files wirtten in the Cookie Class instead
         
         //Create a cookie class object
-        Cookie cookie  =  new Cookie();
+        //Cookie cookie  =  new Cookie();
 
         //Initialising string variable for the data from the client 's command
-        String command ="";
+        /* String command ="";
         try {
             while (!command.equals("close")) {
                 command = in.readLine();
@@ -44,6 +52,6 @@ public class Server
         finally{
             server.close();
             client.close();
-        }
+        } */
     }
 }

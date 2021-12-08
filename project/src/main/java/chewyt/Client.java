@@ -10,6 +10,7 @@ public class Client {
 
     public static void main(String[] args) throws UnknownHostException, IOException {
         
+
         ClientIP = args[0].substring(0, args[0].indexOf(":"));
         port = Integer.parseInt(args[0].substring(args[0].indexOf(":")+1));
 
