@@ -2,6 +2,8 @@ package chewyt;
 
 import java.io.*;
 import java.net.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server 
 {
@@ -10,13 +12,15 @@ public class Server
 
         ServerSocket server  = new ServerSocket(Integer.parseInt(args[0]));
         System.out.println("[SERVER] Server is waiting for client connection...");
+        ExecutorService threadPool = Executors.newFixedThreadPool(2);
 
         while(!server.isClosed()){
             Socket client  = server.accept();
             System.out.println("[SERVER] Connected to client!");
             CookieClientHandler clienthandler = new CookieClientHandler(client,args[1]);
-            Thread thread = new Thread(clienthandler);
-            thread.start();
+            threadPool.submit(clienthandler);
+            //Thread thread = new Thread(clienthandler);
+            //thread.start();
         }
         /* Socket client  = server.accept();
         System.out.println("[SERVER] Connected to client!"); */
